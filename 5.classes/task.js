@@ -101,3 +101,4 @@ class Library { // Вторая задача
         return book;
     }
 }
+

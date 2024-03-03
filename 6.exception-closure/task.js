@@ -1,8 +1,7 @@
 ﻿let parseCount = function (number) { // Первая задача
     let result = Number.parseFloat(number);
     if (isNaN(result)) {
-        const error = new Error('Невалидное значение');
-        throw error;
+        throw new Error('Невалидное значение');
     }
     return result;
 }
@@ -22,7 +21,7 @@ class Triangle { // Вторая задача
         this.b = b;
         this.c = c;
 
-        if ((this.a + this.b) < this.c || (this.c + this.b) < this.a || (this.c + this.a) < this.b) {
+        if ((a + b) < c || (c + b) < a || (c + a) < b) {
             throw new Error('Треугольник с такими сторонами не существует');
         }
     }
@@ -51,4 +50,3 @@ let getTriangle = function (a, b, c) {
         }
     }
 }
-
