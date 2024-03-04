@@ -59,9 +59,7 @@ class AlarmClock {
     }
 
     resetAllCalls() { // сбрасывает возможность запуска всех звонков
-        this.alarmCollection.forEach(item => {
-            item.canCall = true;
-        });
+        this.alarmCollection.forEach(item => item.canCall = true);
     }
 
     clearAlarms() { // удаляет все звонки
