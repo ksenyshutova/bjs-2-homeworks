@@ -5,11 +5,10 @@ class AlarmClock {
     }
 
     addClock(time, callback) { // добавляет новый звонок в коллекцию существующих
-        if (time == undefined || callback == undefined) {
+        if (!time || !callback) {
             throw new Error('Отсутствуют обязательные аргументы');
         }
-        let res = this.alarmCollection.find(item => item.time === time);
-        if (res) {
+        if (this.alarmCollection.find(item => item.time === time)) {
             console.warn('Уже присутствует звонок на это же время');
         }
         this.alarmCollection.push({
@@ -20,9 +19,7 @@ class AlarmClock {
     }
 
     removeClock(time) { // удаляет звонки по определённому времени
-        this.alarmCollection = this.alarmCollection.filter(item => {
-            return item.time !== time;
-        });
+        this.alarmCollection = this.alarmCollection.filter(item => item.time !== time);
     }
 
     getCurrentFormattedTime() { // возвращает текущее время в строковом формате HH:MM
@@ -45,7 +42,7 @@ class AlarmClock {
     start() { // запускает будильник
         if (this.intervalId != undefined) {
             return;
-        } else {
+        }
             this.intervalId = setInterval(() => {
                 this.alarmCollection.forEach((item) => {
                     if ((this.getCurrentFormattedTime() == item.time) && item.canCall == true) {
@@ -55,7 +52,6 @@ class AlarmClock {
                 });
             }, 1000);
         }
-    }
 
     stop() { // останавливает выполнение интервала будильника
         clearInterval(this.intervalId);
